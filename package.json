@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "Backend ",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labs12-should-i-live-here/backend.git"
+  },
+  "author": "Indie Blount",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/labs12-should-i-live-here/backend/issues"
+  },
+  "homepage": "https://github.com/labs12-should-i-live-here/backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "knex": "^0.16.5",
+    "knex-cleaner": "^1.1.4",
+    "nodemon": "^1.18.11"
+  }
+}
