@@ -31,9 +31,12 @@ Back-end build week project for droom
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
 - [Dotenv](https://www.npmjs.com/package/dotenv): `Dotenv is a zero-dependency module that loads environment variables from a .env file`
 
-#### Developer
+
+#### Development
 
 - [Nodemon](https://www.npmjs.com/package/nodemon): `nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected`
+- [Jest](https://www.npmjs.com/package/jest): `Complete and ready to set-up JavaScript testing solution.`
+- [Supertest](https://www.npmjs.com/package/supertest): `Supertest makes HTTP assertions easy via superagent.`
 
 # **Setup**
 
@@ -85,19 +88,10 @@ _HTTP method:_ **[POST]**
 
 | name       | type   | required | description    |
 | ---------- | ------ | -------- | -------------- |
-| `email`    | String | Yes      | Must be unique |
+| `username` | String | Yes      | Must be unique |
 | `password` | String | Yes      |                |
 
-_example:_
 
-```
-
-{
-  "email": "email@gmail.com"
-  "password": "password123",
-}
-
-```
 
 #### Response
 
@@ -110,21 +104,38 @@ _example:_
 ```
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI3IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQ0MzM1NjUxLCJleHAiOjE1NzU4OTMyNTF9.uqd2OHBYkGQpwjLTPPiPWYkYOKlG7whQDFkk46xFXoX"
+  "username": "john"
+  "password": "password123",
 }
 
+```
+  "Welcome john, you have successfully registered"
 ```
 
 ##### 400 (Bad Request)
 
-> If you are missing a email or password for registration, the endpoint will return an HTTP response with a status code `400` and a body as below.
+> If you are missing a username or password for registration, the endpoint will return an HTTP response with a status code `400` and a body as below.
 
 _example:_
 
 ```
+'Please enter a username and password.'
 
+```
+
+##### 401 (Unauthorized)
+
+> If you enter a username that has already been taken for registration, the endpoint will return an HTTP response with a status code `401` and a body as below.
+
+_example:_
+
+```
 {
-  "message": "Submit both an email and password when registering"
+    "err": {
+        "errno": 19,
+        "code": "SQLITE_CONSTRAINT"
+    },
+    "message": "This username is not available. Please pick a different username"
 }
 
 ```
@@ -136,11 +147,7 @@ _example:_
 _example:_
 
 ```
-
-{
-  "message": "Sorry, but something went wrong while registering"
-}
-
+{ message: "A server error has occurred. Please try again later." }
 ```
 
 ---

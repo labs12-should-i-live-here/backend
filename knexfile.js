@@ -14,14 +14,14 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './data/users.db3'
+      filename: './api/data/users.db3'
     },
     useNullAsDefault: true,
     migrations: {
-      directory: "./data/migrations",
+      directory: "./api/data/migrations",
     },
     seeds: {
-      directory: "./data/seeds",
+      directory: "./api/data/seeds",
     },
     // by default SQLite will not enforce foreign keys
     pool: {
@@ -36,10 +36,10 @@ module.exports = {
     connection: productionDbConnection,
     
     migrations: {
-      directory: './data/migrations'
+      directory: './api/data/migrations'
     },
     seeds: {
-      directory: './data/seeds',
+      directory: './api/data/seeds',
     },
   }
 
