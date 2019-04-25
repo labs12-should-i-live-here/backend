@@ -1,0 +1,15 @@
+
+	GUIDELINES for both front end and back end:
+
+	1 - We will use prettier code formatter without any tweaks.
+
+	2 - Then => catch preferred (required?) over async -> await.
+
+	3 - Export React components at the bottom of its file.
+
+	4 - Always use destructuring where applicable.
+
+	5 - Place class methods after return so we can see what a class is doing without having to scroll down.
+
+	6 - Use error instead of err in the catch statements, and be descriptive with variable declarations in general.
+	
