@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 
 const knexConfig = require('../../knexfile.js');
 
-const db = knex(knexConfig.development);
+const dbEnv = process.env.DB_ENV || 'development';
+const db = knex(knexConfig[dbEnv]);
 
 
     // logs information about each request to the console
