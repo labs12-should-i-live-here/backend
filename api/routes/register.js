@@ -16,7 +16,8 @@ router.use(function logger (req, res, next) {
 
 router.get('/', (req, res) => {
     try {
-        res.status(200).json({ message: "Server is ready. Create a username and password to register." });
+        res.status(200).send(db('users'));
+        //json({ message: "Server is ready. Create a username and password to register." });
 
     } catch (error) {
         res.status(500).json({ message: "A server error has occurred. Please try again later." });
