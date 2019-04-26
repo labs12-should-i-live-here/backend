@@ -6,7 +6,7 @@ const localPg = {
   password: "password123"
 }
 
-const productionDbConnection = process.env.DATABASE_URL || localPg;
+const productionDbConnection = process.env.HEROKU_POSTGRESQL_RED_URL || localPg;
 
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
     },
   },
 
-   production: {
+  production: {
     client: 'pg',
     connection: productionDbConnection,
     

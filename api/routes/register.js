@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 
 const knexConfig = require('../../knexfile.js');
 
-const db = knex(knexConfig.development);
+const dbEnv = process.env.DB_ENV || 'development';
+const db = knex(knexConfig[dbEnv]);
 
 
     // logs information about each request to the console
@@ -13,9 +14,11 @@ router.use(function logger (req, res, next) {
     next();
  });
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        res.status(200).json({ message: "Server is ready. Create a username and password to register." });
+        const users = await db('users');
+        res.status(200).send(users);
+        //json({ message: "Server is ready. Create a username and password to register." });
 
     } catch (error) {
         res.status(500).json({ message: "A server error has occurred. Please try again later." });
