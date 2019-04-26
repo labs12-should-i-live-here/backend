@@ -14,9 +14,10 @@ router.use(function logger (req, res, next) {
     next();
  });
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        res.status(200).send(db('users'));
+        const users = await db('users');
+        res.status(200).send(users);
         //json({ message: "Server is ready. Create a username and password to register." });
 
     } catch (error) {
