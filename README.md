@@ -1,17 +1,4 @@
-# backend
-
-# **DROOM API**
-
-Back-end build week project for droom
-
-# **Maintainers**
-
-[@ArthurLeonard](https://github.com/arthurleonard)
-[@thirdeyeclub](https://github.com/thirdeyeclub)
-
-# **Deployed Backend**
-
-- https://......herokuapp.com/
+# Backend
 
 # **Technologies**
 
@@ -30,7 +17,6 @@ Back-end build week project for droom
 - [Cors](https://www.npmjs.com/package/cors): `CORS is a Node.js package for providing a Connect/Express middleware that can be used to enable CORS`
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
 - [Dotenv](https://www.npmjs.com/package/dotenv): `Dotenv is a zero-dependency module that loads environment variables from a .env file`
-
 
 #### Development
 
@@ -54,12 +40,10 @@ yarn server
 
 # **Table of Contents**
 
-
 - [Summary Table of API Endpoints](#summary-table-of-api-endpoints)
 - [Auth Routes](#auth-routes)
-     - [Login User](#login)
-     - [Register User](#register)
-
+  - [Login User](#login)
+  - [Register User](#register)
 
 # **SUMMARY TABLE OF API ENDPOINTS**
 
@@ -91,8 +75,6 @@ _HTTP method:_ **[POST]**
 | `username` | String | Yes      | Must be unique |
 | `password` | String | Yes      |                |
 
-
-
 #### Response
 
 ##### 201 (Created)
@@ -109,7 +91,9 @@ _example:_
 }
 
 ```
-  "Welcome john, you have successfully registered"
+
+"Welcome john, you have successfully registered"
+
 ```
 
 ##### 400 (Bad Request)
@@ -119,6 +103,7 @@ _example:_
 _example:_
 
 ```
+
 'Please enter a username and password.'
 
 ```
@@ -130,12 +115,13 @@ _example:_
 _example:_
 
 ```
+
 {
-    "err": {
-        "errno": 19,
-        "code": "SQLITE_CONSTRAINT"
-    },
-    "message": "This username is not available. Please pick a different username"
+"err": {
+"errno": 19,
+"code": "SQLITE_CONSTRAINT"
+},
+"message": "This username is not available. Please pick a different username"
 }
 
 ```
@@ -147,7 +133,9 @@ _example:_
 _example:_
 
 ```
+
 { message: "A server error has occurred. Please try again later." }
+
 ```
 
 ---
@@ -178,8 +166,8 @@ _example:_
 ```
 
 {
-  "email": "email@gmail.com"
-  "password": "password123",
+"email": "email@gmail.com"
+"password": "password123",
 }
 
 ```
@@ -195,7 +183,7 @@ _example:_
 ```
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MDwiaWF0IjoxNTQ0MzM1NjUxLCJleHAuOjE1NzU4OTMyNTF9.uqd2OHBYkGQpwjLTPPiPWYkYOKlG7whQDFkk46xGXnE",
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MDwiaWF0IjoxNTQ0MzM1NjUxLCJleHAuOjE1NzU4OTMyNTF9.uqd2OHBYkGQpwjLTPPiPWYkYOKlG7whQDFkk46xGXnE",
 }
 
 ```
@@ -209,7 +197,7 @@ _example:_
 ```
 
 {
-  "message": "Submit both an email and password when registering"
+"message": "Submit both an email and password when registering"
 }
 
 ```
@@ -223,7 +211,7 @@ _example:_
 ```
 
 {
-  message: "Sorry, incorrect email or password"
+message: "Sorry, incorrect email or password"
 }
 
 ```
@@ -237,8 +225,9 @@ _example:_
 ```
 
 {
-  "message": "Sorry, but something went wrong while logging in"
+"message": "Sorry, but something went wrong while logging in"
 }
 
 ```
 
+```
