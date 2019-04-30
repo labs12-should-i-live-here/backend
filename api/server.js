@@ -1,15 +1,22 @@
 const express = require('express');
 const middleware = require('./middleware/serverMiddleware')
 
+//Stripe Special Key
+const dotenv = require("dotenv");
+dotenv.config()
+
+//Routes
 const registration = require('./routes/register.js');
-const login = require('./routes/login.js')
+const login = require('./routes/login.js');
+const payment = require('./routes/payment.js'); //Stripe
 
 const server = express();
-
 middleware(server);
+
 
 server.use('/register', registration, notFound); // notFound() should be the last middleware used 
 server.use('/login', login, notFound);
+server.use('/payment', payment, notFound); //Stripe
 
 
 //function that displays current date

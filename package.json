@@ -8,10 +8,7 @@
     "server": "nodemon index.js",
     "test": "jest --watchAll"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/labs12-should-i-live-here/backend.git"
-  },
+  "repository": "git+https://github.com/labs12-should-i-live-here/backend.git",
   "author": "Indie Blount",
   "license": "ISC",
   "bugs": {

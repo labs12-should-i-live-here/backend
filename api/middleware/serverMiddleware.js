@@ -1,9 +1,9 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const bodyParser = require("body-parser");
 
-
-    // logs information about each request to the console
+ // logs information about each request to the console
 function logger (req, res, next) {
     console.log(`Time: ${new Date().toISOString()}, request method: ${req.method} to ${req.url} from ${req.get('Origin')}`);
     next();
