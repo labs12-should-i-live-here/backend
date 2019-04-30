@@ -11,6 +11,10 @@ const registration = require('./routes/register.js');
 const login = require('./routes/login.js');
 const payment = require('./routes/payment.js'); //Stripe
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62f7f28ce49f83939b9cb55da1d8458202aecac6
 const server = express();
 middleware(server);
 
