@@ -1,5 +1,7 @@
 # Backend
 
+Deployed on https://labs12.herokuapp.com/
+
 # **Technologies**
 
 #### Production
