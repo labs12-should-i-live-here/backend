@@ -2,6 +2,7 @@ const router = require('express').Router();
 const knex = require('knex');
 const bcrypt = require('bcryptjs');
 
+    /****** Should be moved to a dbConfig file *****/
 const knexConfig = require('../../knexfile.js');
 
 const dbEnv = process.env.DB_ENV || 'development';
