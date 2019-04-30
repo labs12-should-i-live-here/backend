@@ -11,9 +11,6 @@ const registration = require('./routes/register.js');
 const login = require('./routes/login.js');
 const payment = require('./routes/payment.js'); //Stripe
 
-const registration = require("./routes/register.js");
-const login = require("./routes/login.js");
-
 
 const server = express();
 middleware(server);
