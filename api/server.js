@@ -21,11 +21,6 @@ server.use('/register', registration, notFound); // notFound() should be the las
 server.use('/login', login, notFound);
 server.use('/payment', payment, notFound); //Stripe
 
-
-server.use("/register", registration, notFound); // notFound() should be the last middleware used
-server.use("/login", login, notFound);
-
-
 //function that displays current date
 const utc = new Date()
   .toJSON()
