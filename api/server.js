@@ -11,17 +11,13 @@ const registration = require('./routes/register.js');
 const login = require('./routes/login.js');
 const payment = require('./routes/payment.js'); //Stripe
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 62f7f28ce49f83939b9cb55da1d8458202aecac6
 const server = express();
 middleware(server);
 
 server.use("/login", login, notFound);
 server.use("/register", registration, notFound); // notFound() should be the last middleware used
 server.use('/payment', payment, notFound); //Stripe
-
 
 //function that displays current date
 const utc = new Date()
