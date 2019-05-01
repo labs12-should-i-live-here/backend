@@ -10,7 +10,7 @@ dotenv.config()
 const registration = require('./routes/register.js');
 const login = require('./routes/login.js');
 const payment = require('./routes/payment.js'); //Stripe
-
+const pins = require('./routes/pins.js'); // Pins
 
 const server = express();
 middleware(server);
@@ -18,6 +18,7 @@ middleware(server);
 server.use("/login", login, notFound);
 server.use("/register", registration, notFound); // notFound() should be the last middleware used
 server.use('/payment', payment, notFound); //Stripe
+server.use("/pin", pins, notFound);
 
 //function that displays current date
 const utc = new Date()
