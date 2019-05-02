@@ -6,7 +6,9 @@ find,
 findBy,
 findById,
 updatePin,
-getPinById
+getPinById,
+addPin,
+deletePin
 };
 
 function find() {
@@ -36,6 +38,22 @@ return db('pin')
     .first();
 }
 
+//add pin
+async function addPin(data) {
+    const newData = {
+        ...data, 
+        price: Number(data.price)
+    };
+
+    const id = await db("pins")
+        .insert(newData)
+        .returning('id');
+
+    const newPin = await getPinById(id);
+    return newPin;
+}
+
+//edit
 async function updatePin(id, changes) {
     const update = await db("pins")
         .where({ id })
@@ -45,7 +63,7 @@ async function updatePin(id, changes) {
 
     return putPin;
 }
-
+//git pin by id
 async function getPinById(id) {
     const c = await db("pins")
     .where('id', '=', id)
@@ -53,3 +71,13 @@ async function getPinById(id) {
 
     return c;
 }
+
+//delete 
+async function deletePin(id) {
+    const deleted = await db("pins")
+    .where({ id })
+    .del();
+
+    return deleted;
+}
+
