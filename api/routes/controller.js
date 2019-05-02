@@ -4,7 +4,9 @@ module.exports = {
 add,
 find,
 findBy,
-findById
+findById,
+updatePin,
+getPinById
 };
 
 function find() {
@@ -32,4 +34,22 @@ function findById(id) {
 return db('pin')
     .where('id', '=', id)
     .first();
+}
+
+async function updatePin(id, changes) {
+    const update = await db("pins")
+        .where({ id })
+        .update(changes);
+
+    const putPin = await getPinById(update);
+
+    return putPin;
+}
+
+async function getPinById(id) {
+    const c = await db("pins")
+    .where('id', '=', id)
+    .first();
+
+    return c;
 }
