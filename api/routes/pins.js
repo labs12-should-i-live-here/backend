@@ -6,20 +6,59 @@ router.use(function logger (req, res, next) {
     next();
 });
 
-//save pin POST /:user_id/pins/[long,lat]
-router.post(`/pins/:${id}/`,(req,res)=>{
+//POST save pin
+router.post(`/:id/pins`,(req,res)=>{
     try{
     
-    } catch(error){}
+    } catch(error){
+        res.status(500).json({error, message: "ERROR could not reach server" });
+    }
 })
 
 //GET user pin (should have a list of pins that user saved) /:user_id/pins/:pin_id/
 
-//POST /:user_id/homepin/
-router.post()
-//GET /:user_id/homepin
+//EDIT notes
+router.put('/:id/pins',(req,res)=>{
+    try{
 
-//UPDATE /:user_id/homepin
+    }catch(error){
+        res.status(500).json({ error, message: "ERROR could not reach server" });
+    }
+})
+
+//POST home pin
+router.post('/:id/home', (res, req) =>{
+    try{
+
+    }catch(error){
+        res.status(500).json({ error, message: "ERROR could not reach server" });
+    }
+})
+//GET home pin
+router.post('/:id/home',(res,req)=>{
+    try{
+
+    } catch(error){
+        res.status(500).json({error, message: "ERROR could not reach server" });
+    }
+})
+
+//EDIT home
+router.put('/:id/home',(res, req)=>{
+    try{
+
+    }catch(error){
+        res.status(500).json({ error, message: "ERROR could not reach server" });
+    }
+})
+//DELETE home
+router.delete('/:id/home',(res,req)=>{
+    try{
+
+    }catch(err){
+        res.status(500).json({ err, message: "ERROR could not reach server" });
+    }
+})
 
 //POST /:user_id/compare/[]
 

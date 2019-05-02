@@ -8,16 +8,22 @@ findById
 };
 
 function find() {
-return db('pins').select('id', 'email', 'username', 'password');
+return db('pins').select('id', 
+                    "userId",
+                    "LONGITUDE",
+                    "LATITUDE", 
+                    "notes", 
+                    "home",
+                    "created_at"  );
 }
 
 async function findBy(pin) {
-    const [pin] = await db('pins').where('pin_id', '=', pin_id);
+    const pin = await db('pins').where('id', '=', id);
     return pin
 }
 
 async function add(pin) {
-    const [id] = await db('pins').returning('id').insert(pin);
+    const id = await db('pins').returning('id').insert(pin);
 
     return findById(id);
 }
