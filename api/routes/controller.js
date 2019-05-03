@@ -8,7 +8,8 @@ findById,
 updatePin,
 getPinById,
 addPin,
-deletePin
+deletePin,
+getPins
 };
 
 function find() {
@@ -81,3 +82,8 @@ async function deletePin(id) {
     return deleted;
 }
 
+//get all
+async function getPins(data) {
+    const pins = await db("pins")
+    return pins;
+}
