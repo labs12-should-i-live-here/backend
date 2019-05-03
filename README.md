@@ -51,7 +51,7 @@ yarn server
 
 | Table | Method | Endpoint           | Description                                                                                                                                                                                    |
 | ----- | ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| users | POST   | /api/auth/register | Creates a new `user` profile using the information sent inside the `body` of the request and returns a message along with the new `user` and a JSON Web Token in the `body` of the response.   |
+| users | POST   | /register | Creates a new `user` profile using the information sent inside the `body` of the request and returns a message along with the new `user` and a JSON Web Token in the `body` of the response.   |
 | users | POST   | /api/auth/login    | Uses the credentials sent inside the `body` to authenticate the user. On successful login, returns a message with the `user` profile and a JSON Web Token token in the `body` of the response. |
 
 # AUTH ROUTES
@@ -72,24 +72,25 @@ _HTTP method:_ **[POST]**
 
 #### Body
 
-| name       | type   | required | description    |
-| ---------- | ------ | -------- | -------------- |
-| `username` | String | Yes      | Must be unique |
-| `password` | String | Yes      |                |
+| name       		 	| type   | required | description    |
+| ---------------------------- 	| ------ | -------- | -------------- |
+| `userid` 	 	 	| String | Yes      | Must be unique |
+| `premium_member` 	 	| Boolean| No       |                |
+| `numberofsavedlocations` 	| Integer| No       | defaults to 0  |
+| `created_at` 	 		| String | No       | automatic      |
 
 #### Response
 
 ##### 201 (Created)
 
-> If you successfully register a user the endpoint will return an HTTP response with a status code `201` and a body as below.
+> If you successfully add a user the endpoint will return an HTTP response with a status code `201` and a body as below.
 
 _example:_
 
 ```
 
 {
-  "username": "john"
-  "password": "password123",
+  "userid": "john"
 }
 
 ```
@@ -100,13 +101,13 @@ _example:_
 
 ##### 400 (Bad Request)
 
-> If you are missing a username or password for registration, the endpoint will return an HTTP response with a status code `400` and a body as below.
+> If you are missing a userid field, the endpoint will return an HTTP response with a status code `400` and a body as below.
 
 _example:_
 
 ```
 
-'Please enter a username and password.'
+'Please enter a userid.'
 
 ```
 
@@ -123,7 +124,7 @@ _example:_
 "errno": 19,
 "code": "SQLITE_CONSTRAINT"
 },
-"message": "This username is not available. Please pick a different username"
+"message": "This userid is not available. Please pick a different userid"
 }
 
 ```
