@@ -1,4 +1,4 @@
-# Backend
+z# Backend
 
 Deployed on https://labs12.herokuapp.com/
 
@@ -16,6 +16,7 @@ Deployed on https://labs12.herokuapp.com/
 - [Cors](https://www.npmjs.com/package/cors): `CORS is a Node.js package for providing a Connect/Express middleware that can be used to enable CORS`
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
 - [Dotenv](https://www.npmjs.com/package/dotenv): `Dotenv is a zero-dependency module that loads environment variables from a .env file`
+- "stripe": "^6.31.1": https://stripe.com/docs/libraries#node Stripe is a technology company based in San Francisco, California. Its software allows individuals and businesses to make and receive payments over the Internet. Stripe provides the technical, fraud prevention, and banking infrastructure required to operate online payment systems. 
 
 #### Development
 
@@ -134,22 +135,26 @@ _example:_
 
 
 # Data Schema
-![Data Schema](./schema.png)
+![Data Schema](./schema..png)
 
-# AUTH ENDPOINTS
+# AUTH ENDPOINTS 🔒
 
 see Auth0
+
+# PAYMENT ENDPOINT 💸
+
+add payment endpoints
 
 # 📌 PINS ENDPOINTS
 
 ## POST save pin 📬 
-`/:id/pins`
+`/pin/:id/pins`
 
 ## PUT edit pin 🔨 
-`/:id/pins/:id`
+`/pin/:id/pins/:id`
 
 ## GET pin by id 🎯 
-`/:id/pins/:id`
+`/pin/:id/pins/:id`
 
 ## DELETE pin ✂️ 
 `/:id/pins/:id`

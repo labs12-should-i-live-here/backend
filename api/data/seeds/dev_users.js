@@ -10,19 +10,19 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('users').insert([
         {
-          email: 'GeoRangerfrontend@gmail.com',
-          username: 'admin',
-          password: hash,
+          userid:"1",
+          premium_member:true,
+          numberofsavedlocations: "1"
         },
         {
-          email: 'email@aol.com',
-          username: 'first',
-          password: hash,
+          userid:"2",
+          premium_member:true,
+          numberofsavedlocations: "1"
         },
         {
-          email: 'wash@nyc.edu',
-          username: 'washington',
-          password: hash,
+          userid:"3",
+          premium_member:true,
+          numberofsavedlocations: "1"
         }
 
       ]);
