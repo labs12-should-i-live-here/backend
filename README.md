@@ -28,7 +28,6 @@ yarn install
 
 # Starts express server using nodemon
 yarn server
-<<<<<<< HEAD
 ```
 
 # **Table of Contents**
@@ -132,83 +131,7 @@ _example:_
 
 ```
 
----
 
-## **LOGIN**
-
-### **Logs a user in**
-
-_Method Url:_ `/api/auth/login`
-
-_HTTP method:_ **[POST]**
-
-#### Headers
-
-| name           | type   | required | description              |
-| -------------- | ------ | -------- | ------------------------ |
-| `Content-Type` | String | Yes      | Must be application/json |
-
-#### Body
-
-| name       | type   | required | description                                                        |
-| ---------- | ------ | -------- | ------------------------------------------------------------------ |
-| `email`    | String | Yes      | Must match a email in the database                                 |
-| `password` | String | Yes      | Must match a password in the database corresponding to email above |
-
-_example:_
-
-```
-
-{
-"email": "email@gmail.com"
-"password": "password123",
-}
-
-```
-
-#### Response
-
-##### 200 (OK)
-
-> If you successfully login, the endpoint will return an HTTP response with a status code `200` and a body as below.
-
-_example:_
-
-```
-
-{
-"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MDwiaWF0IjoxNTQ0MzM1NjUxLCJleHAuOjE1NzU4OTMyNTF9.uqd2OHBYkGQpwjLTPPiPWYkYOKlG7whQDFkk46xGXnE",
-}
-
-```
-
-##### 400 (Bad Request)
-
-> If you are missing a email or password for login, the endpoint will return an HTTP response with a status code `400` and a body as below.
-
-_example:_
-
-```
-
-{
-"message": "Submit both an email and password when registering"
-}
-
-```
-
-##### 401 (Unauthorized)
-
-> If you fail to login, the endpoint will return an HTTP response with a status code `401` which indicates the email and or password entered is not valid.
-
-_example:_
-
-```
-
-{
-message: "Sorry, incorrect email or password"
-}
-=======
->>>>>>> 40105bba21581ec72fff18232eede5492a015837
 
 # Data Schema
 ![Data Schema](./schema.png)
