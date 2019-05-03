@@ -35,14 +35,14 @@ router.post("/", (req, res) => {
   try {
     const user = req.body;
 
-    if (user.username && user.password) {
-      user.password = bcrypt.hashSync(user.password, 10);
+    if (user.userid) {
+     
       db.insert(user)
         .into("users")
         .then(id => {
           res
             .status(201)
-            .send(`Welcome ${user.username}, you have successfully registered`);
+            .send(`Welcome ${user.userid}, you have successfully registered`);
         })
         .catch(error => {
           if (error.errno === 19)
@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
               .json({
                 err: error,
                 message:
-                  "This username is not available. Please pick a different username"
+                  "This userid already taken. Please pick a different userid"
               });
           else
             res
@@ -60,7 +60,7 @@ router.post("/", (req, res) => {
         });
     } else {
       // both username and password not provided
-      res.status(400).send("Please enter a username and password.");
+      res.status(400).send("No userid sent");
     }
   } catch (error) {
     res
@@ -71,4 +71,17 @@ router.post("/", (req, res) => {
   }
 });
 
+// router.put("/:id", (req, res) => {
+//   db.update(req.params.id, req.body)
+//   .then(newData => {
+//   if (newData) {
+//       res.status(200).json(newData);
+//   } else {
+//       res.status(404).json({ message: "No such pin exits!" });
+//   }
+//   })
+//   .catch(error => {
+//   res.status(500).json(error);
+//   });
+// });
 module.exports = router;
