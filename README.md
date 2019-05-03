@@ -32,20 +32,24 @@ yarn server
 # Data Schema
 ![Data Schema](./schema.png)
 
-# AUTH ENDPOINTS
+# AUTH ENDPOINTS 🔒
 
 see Auth0
+
+# PAYMENT ENDPOINT 💸
+
+add payment endpoints
 
 # 📌 PINS ENDPOINTS
 
 ## POST save pin 📬 
-`/:id/pins`
+`/pin/:id/pins`
 
 ## PUT edit pin 🔨 
-`/:id/pins/:id`
+`/pin/:id/pins/:id`
 
 ## GET pin by id 🎯 
-`/:id/pins/:id`
+`/pin/:id/pins/:id`
 
 ## DELETE pin ✂️ 
-`/:id/pins/:id`
+`/pin/:id/pins/:id`
