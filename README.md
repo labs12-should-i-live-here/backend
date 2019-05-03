@@ -16,6 +16,7 @@ Deployed on https://labs12.herokuapp.com/
 - [Cors](https://www.npmjs.com/package/cors): `CORS is a Node.js package for providing a Connect/Express middleware that can be used to enable CORS`
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
 - [Dotenv](https://www.npmjs.com/package/dotenv): `Dotenv is a zero-dependency module that loads environment variables from a .env file`
+- "stripe": "^6.31.1": https://stripe.com/docs/libraries#node Stripe is a technology company based in San Francisco, California. Its software allows individuals and businesses to make and receive payments over the Internet. Stripe provides the technical, fraud prevention, and banking infrastructure required to operate online payment systems. 
 
 #### Development
 
@@ -230,3 +231,13 @@ see Auth0
 
 ## DELETE pin ✂️ 
 `/:id/pins/:id`
+
+*Stripe* 
+  if (stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
+  }
+  
+  POST to /payment
+  form pops up requiring Email and Card information
