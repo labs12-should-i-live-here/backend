@@ -1,4 +1,4 @@
-z# Backend
+# Backend
 
 Deployed on https://labs12.herokuapp.com/
 
@@ -29,109 +29,6 @@ yarn install
 
 # Starts express server using nodemon
 yarn server
-```
-
-# **Table of Contents**
-
-- [Summary Table of API Endpoints](#summary-table-of-api-endpoints)
-- [Auth Routes](#auth-routes)
-  - [Login User](#login)
-  - [Register User](#register)
-
-# **SUMMARY TABLE OF API ENDPOINTS**
-
-| Table | Method | Endpoint           | Description                                                                                                                                                                                    |
-| ----- | ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| users | POST   | /register | Creates a new `user` profile using the information sent inside the `body` of the request and returns a message along with the new `user` and a JSON Web Token in the `body` of the response.   |
-| users | POST   | /api/auth/login    | Uses the credentials sent inside the `body` to authenticate the user. On successful login, returns a message with the `user` profile and a JSON Web Token token in the `body` of the response. |
-
-# AUTH ROUTES
-
-## **REGISTER**
-
-### **Registers a user**
-
-_Method Url:_ `/api/auth/register`
-
-_HTTP method:_ **[POST]**
-
-#### Headers
-
-| name           | type   | required | description              |
-| -------------- | ------ | -------- | ------------------------ |
-| `Content-Type` | String | Yes      | Must be application/json |
-
-#### Body
-
-| name       		 	| type   | required | description    |
-| ---------------------------- 	| ------ | -------- | -------------- |
-| `userid` 	 	 	| String | Yes      | Must be unique |
-| `premium_member` 	 	| Boolean| No       |                |
-| `numberofsavedlocations` 	| Integer| No       | defaults to 0  |
-| `created_at` 	 		| String | No       | automatic      |
-
-#### Response
-
-##### 201 (Created)
-
-> If you successfully add a user the endpoint will return an HTTP response with a status code `201` and a body as below.
-
-_example:_
-
-```
-
-{
-  "userid": "john"
-}
-
-```
-
-"Welcome john, you have successfully registered"
-
-```
-
-##### 400 (Bad Request)
-
-> If you are missing a userid field, the endpoint will return an HTTP response with a status code `400` and a body as below.
-
-_example:_
-
-```
-
-'Please enter a userid.'
-
-```
-
-##### 401 (Unauthorized)
-
-> If you enter a username that has already been taken for registration, the endpoint will return an HTTP response with a status code `401` and a body as below.
-
-_example:_
-
-```
-
-{
-"err": {
-"errno": 19,
-"code": "SQLITE_CONSTRAINT"
-},
-"message": "This userid is not available. Please pick a different userid"
-}
-
-```
-
-##### 500 (Internal Server Error)
-
-> If there is a server or database error, the endpoint will return an HTTP response with a status code `500` and a body as below.
-
-_example:_
-
-```
-
-{ message: "A server error has occurred. Please try again later." }
-
-```
-
 
 
 # Data Schema
@@ -158,3 +55,17 @@ add payment endpoints
 
 ## DELETE pin ✂️ 
 `/:id/pins/:id`
+
+`/pin/:id/pins/:id`
+
+
+*Stripe* 
+  if (stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
+  }
+  
+  POST to /payment
+  form pops up requiring Email and Card information
+
