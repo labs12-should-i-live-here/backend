@@ -20,7 +20,7 @@ router.post(`/:id/pins`,(req,res)=>{
 
 //GET user pin (should have a list of pins that user saved) /:user_id/pins/:pin_id/
 
-//EDIT notes
+//EDIT pin
 router.put("/:id/pins/:id", (req, res) => {
     fn.updatePin(req.params.id, req.body)
     .then(newData => {
