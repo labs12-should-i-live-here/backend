@@ -11,7 +11,11 @@ var message = [
   "Welcome Labs Team",
   "Team work makes the dream work!",
   "A programmer puts two glasses on his bedside table before going to sleep. A full one, in case he gets thirsty, and an empty one, in case he doesnt.",
-  "In order to understand recursion you must first understand recursion."
+  "In order to understand recursion you must first understand recursion.",
+  "I hope you GET what you came for.",
+  "awh CRUD, here we go again.",
+  "***SEVER GREEN***",
+  "What did the horse say to the car? What did the man say to the machine?"
 ];
 var m = message[Math.floor(Math.random() * message.length)];
 

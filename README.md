@@ -8,13 +8,10 @@ Deployed on https://labs12.herokuapp.com/
 
 - [Express](https://www.npmjs.com/package/express): `Fast, unopinionated, minimalist web framework for Node.js`
 - [Body parser](https://www.npmjs.com/package/body-parser): `Parse incoming request bodies in a middleware before your handlers`
-- [Bcryptjs](https://www.npmjs.com/package/body-parser): `Allows you to store passwords securely in your database`
-- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken): `Generate and verify json web tokens to maintain a stateless api`
 - [Knex](https://www.npmjs.com/package/knex): `Knex.js is a "batteries included" SQL query builder for Postgres, MSSQL, MySQL, MariaDB, SQLite3, Oracle, and Amazon Redshift designed to be flexible, portable, and fun to use`
 - [Knex-cleaner](https://www.npmjs.com/package/knex-cleaner): `Helper library to clean a PostgreSQL, MySQL or SQLite3 database tables using Knex`
 - [Pg](https://www.npmjs.com/package/pg): `Non-blocking PostgreSQL client for Node.js.`
 - [Sqlite3](https://www.npmjs.com/package/sqlite3): `Asynchronous, non-blocking SQLite3 bindings for Node.js.`
-- [Sentry](https://www.npmjs.com/package/@sentry/node): `Open-source error tracking that helps developers monitor and fix crashes in real time. Iterate continuously. Boost workflow efficiency. Improve user experience.`
 - [Morgan](https://www.npmjs.com/package/morgan): `HTTP request logger middleware for Node.js`
 - [Cors](https://www.npmjs.com/package/cors): `CORS is a Node.js package for providing a Connect/Express middleware that can be used to enable CORS`
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
@@ -26,18 +23,12 @@ Deployed on https://labs12.herokuapp.com/
 - [Jest](https://www.npmjs.com/package/jest): `Complete and ready to set-up JavaScript testing solution.`
 - [Supertest](https://www.npmjs.com/package/supertest): `Supertest makes HTTP assertions easy via superagent.`
 
-# **Setup**
-
-(# <--- signifies comment)
-
-In your terminal run:
-
-```
 # Install dependencies
 yarn install
 
 # Starts express server using nodemon
 yarn server
+<<<<<<< HEAD
 ```
 
 # **Table of Contents**
@@ -216,21 +207,26 @@ _example:_
 {
 message: "Sorry, incorrect email or password"
 }
+=======
+>>>>>>> 40105bba21581ec72fff18232eede5492a015837
 
-```
+# Data Schema
+![Data Schema](./schema.png)
 
-##### 500 (Bad Request)
+# AUTH ENDPOINTS
 
-> If there is a server or database error, the endpoint will return an HTTP response with a status code `500` and a body as below.
+see Auth0
 
-_example:_
+# 📌 PINS ENDPOINTS
 
-```
+## POST save pin 📬 
+`/:id/pins`
 
-{
-"message": "Sorry, but something went wrong while logging in"
-}
+## PUT edit pin 🔨 
+`/:id/pins/:id`
 
-```
+## GET pin by id 🎯 
+`/:id/pins/:id`
 
-```
+## DELETE pin ✂️ 
+`/:id/pins/:id`
