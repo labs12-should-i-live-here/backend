@@ -66,19 +66,18 @@ router.put("/:id/pins/:id", (req, res) => {
 });
 
 //GET all pins
-router.get("/:id/pins" , (req, res) => {
-    fn.getPins(req.params.id)
+router.get("/pins" , (req, res) => {
+    fn.getPins()
     .then(data => {
-    if (data) {
-        res.status(200).json(data);
-    } else {
-        res.status(404).json({ message: "No Pins with that Id" });
-    }
-    })
-    .catch(error => {
-    console.log(error);
-    res.status(500).json(error);
-    });
+        if (data.length) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json({ message: "No Pins Found" });
+        }
+        })
+        .catch(error => {
+            res.status(500).json(error);
+        });
 });
 
 //compare CRUD
