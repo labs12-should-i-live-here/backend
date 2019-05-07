@@ -9,7 +9,8 @@ updatePin,
 getPinById,
 addPin,
 deletePin,
-getPins
+getPins,
+findUserById
 };
 
 function find() {
@@ -36,6 +37,16 @@ async function add(pin) {
 function findById(id) {
 return db('pin')
     .where('id', '=', id)
+    .first();
+}
+
+function findUserById(id) {
+    return db('users')
+    .select('id',
+            'userid',
+            'premium_member',
+            'numberofsavedlocations')
+    .where({ id })
     .first();
 }
 
