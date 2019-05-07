@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const knex = require("knex");
-const bcrypt = require("bcryptjs");
+const Users = require('./controller');
 
 const knexConfig = require("../../knexfile.js");
 
@@ -84,4 +84,24 @@ router.post("/", (req, res) => {
 //   res.status(500).json(error);
 //   });
 // });
+
+//get by Id
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const user = await Users.findUserById(id);
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ message: `No user with matching id, please try again.` });
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 module.exports = router;
