@@ -36,11 +36,28 @@ yarn server
 
 # AUTH ENDPOINTS 🔒
 
-see Auth0
+## POST User
+`/register/`
+
+## GET register : "Server is ready. Create a username and password to register."
+`/register/`
+
+## GET user by id
+`/register/:id`
+
+## GET login : "Server is ready. Create a username and password to register."
+`/login/`
+
+## POST login
+`/login/`
 
 # PAYMENT ENDPOINT 💸
 
-add payment endpoints
+## GET  message: "Hello Stripe checkout server!"
+`/payment/`
+
+## POST payment
+`/payment/`
 
 # 📌 PINS ENDPOINTS
 
