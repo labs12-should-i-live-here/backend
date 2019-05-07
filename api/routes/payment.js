@@ -2,14 +2,6 @@ const router = require("express").Router();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// const stripeChargeCallback = res => (stripeErr, stripeRes) => {
-//   if (stripeErr) {
-//     res.status(500).send({ error: stripeErr });
-//   } else {
-//     res.status(200).send({ success: stripeRes });
-//   }
-// };
-
 //CRUD
 
 //GET
@@ -20,43 +12,80 @@ router.get("/", (req, res) => {
   });
 });
 //POST
-//version 1 ------------------------------------------
-// router.post("/", (req, res) => {
-//     const body = {
-//       source: req.body.token.id,
-//       amount: req.body.amount,
-//       currency: "usd"
-//     };
-//     stripe.charges.create(body, stripeChargeCallback(res));
-// });
-
-//version 2 -----------------------------------------
 router.post("/", function(req, res, next) {
+
+  //Subscription
   const stripeToken = req.body.stripeToken;
 
-  stripe.charges.create(
+  stripe.customers.create(
     {
-      amount: 1000,
-      currency: "usd",
-      description: "Example Charge",
       source: stripeToken
     },
-    function(err, charge) {
-      console.log('charge');
-      console.log(charge);
+    function(err, customer) {
+      console.log(err);
+      console.log(customer);
       if (err) {
         res.send({
           success: false,
-          message: 'ERrorr'
+          message: "ERrorr"
         });
       } else {
-        res.send({
-          success: true,
-          message: 'Success'
-        });
+        const { id } = customer;
+
+        stripe.subscriptions.create(
+          {
+            customer: id,
+            items: [
+              {
+                //plan ID
+                plan: "prime"
+              }
+            ]
+          },
+          function(err, subscription) {
+            console.log(err);
+            console.log(subscription);
+            if (err) {
+              res.send({
+                success: false,
+                message: "ERrorr"
+              });
+            } else {
+              res.send({
+                success: true,
+                message: "Success"
+              });
+            }
+          }
+        );
       }
     }
   );
+
+  //One-time paynent
+  // stripe.charges.create(
+  //   {
+  //     amount: 1000,
+  //     currency: "usd",
+  //     description: "Example Charge",
+  //     source: stripeToken
+  //   },
+  //   function(err, charge) {
+  //     console.log('charge');
+  //     console.log(charge);
+  //     if (err) {
+  //       res.send({
+  //         success: false,
+  //         message: 'ERrorr'
+  //       });
+  //     } else {
+  //       res.send({
+  //         success: true,
+  //         message: 'Success'
+  //       });
+  //     }
+  //   }
+  // );
 });
 
 module.exports = router;
