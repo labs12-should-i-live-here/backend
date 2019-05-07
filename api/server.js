@@ -17,7 +17,7 @@ middleware(server);
 
 server.use("/login", login, notFound);
 server.use("/register", registration, notFound); // notFound() should be the last middleware used
-server.use('/payment', payment, notFound); //Stripe
+server.use('/payment', payment); //Stripe
 server.use("/pin", pins, notFound);
 
 //function that displays current date
