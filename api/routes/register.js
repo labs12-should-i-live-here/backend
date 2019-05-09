@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
         .then(id => {
           res
             .status(201)
-            .send(`Welcome ${user.userid}, you have successfully registered`);
+            .send(user.id);
         })
         .catch(error => {
           if (error.errno === 19)
