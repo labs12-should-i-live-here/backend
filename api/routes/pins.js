@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const fn = require('./controller');
+const jwt = require('jsonwebtoken')
 
 //pin end points
 //logger
