@@ -11,6 +11,7 @@ router.use(function logger (req, res, next) {
 //PINS CRUD ******************************
 //POST save pin
 router.post(`/:id/pins`,(req,res)=>{
+    console.log(...req.body);
     fn.addPin({...req.body}).then(data=>{
         res.status(201).json(data);
     }).catch(err=>{
@@ -79,6 +80,7 @@ router.get("/pins" , (req, res) => {
             res.status(500).json(error);
         });
 });
+
 
 //compare CRUD
 //I need to create the Front end compare before i can make this...
