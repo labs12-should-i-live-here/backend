@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const knex = require("knex");
 const Users = require('./controller');
+const generateToken = require('../middleware/gentoken.js');
 
 const knexConfig = require("../../knexfile.js");
 
@@ -36,13 +37,13 @@ router.post("/", (req, res) => {
     const user = req.body;
 
     if (user.userid) {
-     
+      const token = generateToken(user);
       db.insert(user)
         .into("users")
         .then(id => {
           res
             .status(201)
-            .send(user.id);
+            .json({message:"account created",user,token});
         })
         .catch(error => {
           if (error.errno === 19)
