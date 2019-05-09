@@ -2,6 +2,8 @@ const router = require("express").Router();
 const fn = require('./controller');
 const jwt = require('jsonwebtoken')
 
+const tokenService = require('../middleware/tokenService.js')
+
 //pin end points
 //logger
 router.use(function logger (req, res, next) {
