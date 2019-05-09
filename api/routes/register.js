@@ -34,7 +34,6 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   try {
     const user = req.body;
-    console.log(user.userid)
     if (user.userid) {
       const token = generateToken(user);
       console.log(token);

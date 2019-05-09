@@ -1,5 +1,3 @@
-const ex = require('../data/extendedConfig');
-
 module.exports = {
     generateToken 
 };
@@ -17,7 +15,5 @@ const secret = process.env.SECRET || 'string';
     const options = {
                         expiresIn: '78h'
                     }
-                    console.log( payload, options, secret)
-                    try {console.log(jwt.sign( payload, secret, options), "recived")}catch(err){console.log(err)}
     return jwt.sign( payload, secret, options);
     }

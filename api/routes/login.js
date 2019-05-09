@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
         const { username, password } = req.body;
 
         if (username && password) {
+
             res.status(200).send('username and password received.', token);
         } else {  // both username and password not provided
             res.status(422).send('Please enter a username and password.');
