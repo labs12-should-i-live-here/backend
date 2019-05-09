@@ -15,7 +15,8 @@ var message = [
   "I hope you GET what you came for.",
   "awh CRUD, here we go again.",
   "***SEVER GREEN***",
-  "What did the horse say to the car? What did the man say to the machine?"
+  "What did the horse say to the car? What did the man say to the machine?",
+  "Hic Rhodus!"
 ];
 var m = message[Math.floor(Math.random() * message.length)];
 

@@ -29,7 +29,9 @@ async function findBy(pin) {
 }
 
 async function add(pin) {
-    const id = await db('pins').returning('id').insert(pin);
+    const id = await db('pins')
+    .returning('id')
+    .insert(pin);
 
     return findById(id);
 }

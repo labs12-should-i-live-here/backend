@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const knex = require("knex");
 const Users = require('./controller');
-
+const {generateToken} =require('../middleware/genToken.js')
 const knexConfig = require("../../knexfile.js");
 
 const dbEnv = process.env.DB_ENV || "development";
@@ -34,14 +34,15 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   try {
     const user = req.body;
-
     if (user.userid) {
-     
+      const token = generateToken(user);
+      console.log(token);
       db.insert(user)
         .into("users")
-        .then(id => {
+        .then(
+          id => { 
           res
-            .status(201)
+            .status(201).json({id, token})
             .send(user.id);
         })
         .catch(error => {
@@ -65,7 +66,7 @@ router.post("/", (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({
+      .json({error,
         message: "A server error has occurred. Please try again later."
       });
   }
