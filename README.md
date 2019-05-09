@@ -62,18 +62,17 @@ yarn server
 # 📌 PINS ENDPOINTS
 
 ## POST save pin 📬 
-`/pin/:id/pins`
+`/pin/pins`
 
 ## PUT edit pin 🔨 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 ## GET pin by id 🎯 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 ## DELETE pin ✂️ 
-`/:id/pins/:id`
 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 
 *Stripe* 

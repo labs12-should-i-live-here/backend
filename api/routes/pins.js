@@ -13,7 +13,7 @@ router.use(function logger (req, res, next) {
 
 //PINS CRUD ******************************
 //POST save pin
-router.post(`/:id/pins`,(req,res)=>{
+router.post(`/pins`,(req,res)=>{
     console.log(...req.body);
     fn.addPin({...req.body}).then(data=>{
         res.status(201).json(data);
@@ -24,7 +24,7 @@ router.post(`/:id/pins`,(req,res)=>{
 
 
 //EDIT pin
-router.put("/:id/pins/:id", (req, res) => {
+router.put("/pins/:id", (req, res) => {
     fn.updatePin(req.params.id, req.body)
     .then(newData => {
     if (newData) {
@@ -39,7 +39,7 @@ router.put("/:id/pins/:id", (req, res) => {
 });
 
 //GET pin by id
-router.get("/:id/pins/:id" , (req, res) => {
+router.get("/pins/:id" , (req, res) => {
     fn.getPinById(req.params.id)
     .then(data => {
     if (data) {
@@ -55,7 +55,7 @@ router.get("/:id/pins/:id" , (req, res) => {
 });
 
 //DELETE pin
-router.put("/:id/pins/:id", (req, res) => {
+router.put("/pins/:id", (req, res) => {
     fn.updatePin(req.params.id)
     .then(badClass => {
         if (badClass) {
