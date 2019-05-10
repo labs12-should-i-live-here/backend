@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+//SECRET KEY
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 //CRUD
@@ -89,3 +89,5 @@ router.post("/", function(req, res, next) {
 });
 
 module.exports = router;
+
+//PR 1
