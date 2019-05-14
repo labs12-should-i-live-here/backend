@@ -1,6 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
-const cors = require('cors');
+// const cors = require('cors');
 const bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken')
 
@@ -12,9 +12,20 @@ function logger (req, res, next) {
 }
 
 module.exports = server => {
+//CORS
+// server.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });
+  server.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://labs12.herokuapp.com');
+    next();
+  });
+  //CORS    
 server.use(express.json());
 server.use(helmet());
-server.use(cors());
+// server.use(cors());
 server.use(logger);
 // server.use(bodyParser)
 };

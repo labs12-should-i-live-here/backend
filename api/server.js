@@ -14,13 +14,6 @@ const pins = require('./routes/pins.js'); // Pins
 const server = express();
 middleware(server);
 
-//CORS
-server.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});//CORS
-
 server.use("/login", login, notFound);
 server.use("/register", registration, notFound); // notFound() should be the last middleware used
 server.use('/payment', payment); //Stripe
