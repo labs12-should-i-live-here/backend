@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const knex = require("knex");
 const Users = require('./controller');
-const {generateToken} =require('../middleware/genToken.js')
+// const {generateToken} =require('../middleware/genToken.js')
 const knexConfig = require("../../knexfile.js");
 
 const dbEnv = process.env.DB_ENV || "development";
