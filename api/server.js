@@ -1,7 +1,6 @@
 const express = require("express");
 const middleware = require("./middleware/serverMiddleware");
 
-
 //Stripe Special Key
 const dotenv = require("dotenv");
 dotenv.config()
@@ -15,6 +14,13 @@ const pins = require('./routes/pins.js'); // Pins
 const server = express();
 middleware(server);
 
+//CORS
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});//CORS
+
 server.use("/login", login, notFound);
 server.use("/register", registration, notFound); // notFound() should be the last middleware used
 server.use('/payment', payment); //Stripe
@@ -25,12 +31,21 @@ const utc = new Date()
   .toJSON()
   .slice(0, 10)
   .replace(/-/g, "/");
+
+  
+//Server Routing CRUD  
 server.get("/", (req, res) => {
   res.status(200).send(`Today is ${utc}`);
 });
+server.post("/", (req, res) => {
+  res.status(200);
+});
 
+//Routing Functions
 // returns a 404 if path not found.
 function notFound(req, res) {
   res.status(404).send("URL not found.");
 }
+
+
 module.exports = server;
