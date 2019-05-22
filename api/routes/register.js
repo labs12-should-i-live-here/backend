@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({
+      .json({ user,
         message: "A server error has occurred. Please try again later."
       });
   }
