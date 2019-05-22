@@ -79,12 +79,12 @@ _example:_
 ```
 
 {
-  "userid": "john"
+    "userid": "Mickey",
+    "id": [
+        8
+    ],
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiTWlja2V5IiwidXNlcm5hbWUiOiJ0YXlsb3IiLCJpYXQiOjE1NTg0OTI4NDUsImV4cCI6MTU1ODc3MzY0NX0.tcQuxc1EzJQ_mEokJT7Tbmc9cDZXhhBdgWfX1gi7LIE"
 }
-
-```
-"Welcome john, you have successfully registered"
-```
 
 ##### 400 (Bad Request)
 
@@ -121,8 +121,7 @@ _example:_
 
 ---
 
-## POST User
-`/register/`
+
 
 ## GET register : "Server is ready. Create a username and password to register."
 `/register/`
@@ -133,8 +132,6 @@ _example:_
 ## GET login : "Server is ready. Create a username and password to register."
 `/login/`
 
-## POST login
-`/login/`
 
 # PAYMENT ENDPOINT 💸
 
@@ -147,18 +144,17 @@ _example:_
 # 📌 PINS ENDPOINTS
 
 ## POST save pin 📬 
-`/pin/:id/pins`
+`/pin/pins`
 
 ## PUT edit pin 🔨 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 ## GET pin by id 🎯 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 ## DELETE pin ✂️ 
-`/:id/pins/:id`
 
-`/pin/:id/pins/:id`
+`/pin/pins/:id`
 
 
 *Stripe* 

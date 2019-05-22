@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const fn = require('./controller');
 
+const tokenVerify = require('../middleware/tokenVerify.js')
+
 //pin end points
 //logger
 router.use(function logger (req, res, next) {
@@ -10,7 +12,8 @@ router.use(function logger (req, res, next) {
 
 //PINS CRUD ******************************
 //POST save pin
-router.post(`/:id/pins`,(req,res)=>{
+router.post(`/pins`, tokenVerify ,(req,res)=>{
+    console.log(...req.body);
     fn.addPin({...req.body}).then(data=>{
         res.status(201).json(data);
     }).catch(err=>{
@@ -20,7 +23,7 @@ router.post(`/:id/pins`,(req,res)=>{
 
 
 //EDIT pin
-router.put("/:id/pins/:id", (req, res) => {
+router.put("/pins/:id", tokenVerify,  (req, res) => {
     fn.updatePin(req.params.id, req.body)
     .then(newData => {
     if (newData) {
@@ -35,10 +38,11 @@ router.put("/:id/pins/:id", (req, res) => {
 });
 
 //GET pin by id
-router.get("/:id/pins/:id" , (req, res) => {
+router.get("/pins/:id" ,tokenVerify, (req, res) => {
     fn.getPinById(req.params.id)
     .then(data => {
     if (data) {
+
         res.status(200).json(data);
     } else {
         res.status(404).json({ message: "No Pins with that Id" });
@@ -51,7 +55,7 @@ router.get("/:id/pins/:id" , (req, res) => {
 });
 
 //DELETE pin
-router.put("/:id/pins/:id", (req, res) => {
+router.put("/pins/:id",tokenVerify, (req, res) => {
     fn.updatePin(req.params.id)
     .then(badClass => {
         if (badClass) {
@@ -66,10 +70,11 @@ router.put("/:id/pins/:id", (req, res) => {
 });
 
 //GET all pins
-router.get("/pins" , (req, res) => {
+router.get("/pins" , tokenVerify,  (req, res) => {
     fn.getPins()
     .then(data => {
         if (data.length) {
+
             res.status(200).json(data);
         } else {
             res.status(404).json({ message: "No Pins Found" });
@@ -79,6 +84,24 @@ router.get("/pins" , (req, res) => {
             res.status(500).json(error);
         });
 });
+
+//get all pins without need ing verification
+
+router.get("/pins/test" ,  (req, res) => {
+    fn.getPins()
+    .then(data => {
+        if (data.length) {
+
+            res.status(200).json(data);
+        } else {
+            res.status(404).json({ message: "No Pins Found" });
+        }
+        })
+        .catch(error => {
+            res.status(500).json(error);
+        });
+});
+
 
 //compare CRUD
 //I need to create the Front end compare before i can make this...

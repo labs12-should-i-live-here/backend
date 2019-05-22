@@ -1,7 +1,6 @@
 const express = require("express");
 const middleware = require("./middleware/serverMiddleware");
 
-
 //Stripe Special Key
 const dotenv = require("dotenv");
 dotenv.config()
@@ -25,12 +24,21 @@ const utc = new Date()
   .toJSON()
   .slice(0, 10)
   .replace(/-/g, "/");
+
+  
+//Server Routing CRUD  
 server.get("/", (req, res) => {
   res.status(200).send(`Today is ${utc}`);
 });
+server.post("/", (req, res) => {
+  res.status(200);
+});
 
+//Routing Functions
 // returns a 404 if path not found.
 function notFound(req, res) {
   res.status(404).send("URL not found.");
 }
+
+
 module.exports = server;

@@ -1,8 +1,14 @@
 const router = require("express").Router();
-
+//SECRET KEY
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 //CRUD
+
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //GET
 router.get("/", (req, res) => {
@@ -89,3 +95,5 @@ router.post("/", function(req, res, next) {
 });
 
 module.exports = router;
+
+//PR 1

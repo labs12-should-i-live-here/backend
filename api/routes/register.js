@@ -1,8 +1,27 @@
 const router = require("express").Router();
 const knex = require("knex");
-const Users = require('./controller');
+const jwt = require('jsonwebtoken');
 
+const Users = require('./controller');
+// const {generateToken} =require('../middleware/genToken.js')
 const knexConfig = require("../../knexfile.js");
+
+
+const secret = process.env.SECRET || 'string';
+
+    
+function generateToken ( user ) {
+
+  const payload = {
+    subject: user.userid,
+    username: "taylor"
+  }
+  const options = {
+    expiresIn: '78h'
+  }
+  console.log(jwt.sign( payload, secret, options))
+  return jwt.sign( payload, secret, options);
+}
 
 const dbEnv = process.env.DB_ENV || "development";
 const db = knex(knexConfig[dbEnv]);
@@ -34,14 +53,17 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {
   try {
     const user = req.body;
-
+    
     if (user.userid) {
-     
+      let userid = user.userid;
+      const token = generateToken(user);
+      console.log(token);
       db.insert(user)
         .into("users")
-        .then(id => {
+        .then(
+          id => { 
           res
-            .status(201)
+            .status(201).json({userid, id, token})
             .send(user.id);
         })
         .catch(error => {
@@ -51,21 +73,21 @@ router.post("/", (req, res) => {
               .json({
                 err: error,
                 message:
-                  "This userid already taken. Please pick a different userid"
+                  "This userid is already taken. Please pick a different userid"
               });
           else
             res
               .status(501)
-              .json({ err: error, message: "An unknown error occurred." });
+              .json({ err: error, user: user, message: "An unknown error occurred." });
         });
     } else {
       // both username and password not provided
-      res.status(400).send("No userid sent");
+      res.status(400).send("Please enter a userid");
     }
   } catch (error) {
     res
       .status(500)
-      .json({ user,
+      .json({error, user,
         message: "A server error has occurred. Please try again later."
       });
   }
