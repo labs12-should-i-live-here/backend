@@ -13,7 +13,7 @@ router.use(function logger (req, res, next) {
 //PINS CRUD ******************************
 //POST save pin
 router.post(`/pins`, tokenVerify ,(req,res)=>{
-    console.log(...req.body);
+    console.log(req.body);
     fn.addPin({...req.body}).then(data=>{
         res.status(201).json(data);
     }).catch(err=>{
