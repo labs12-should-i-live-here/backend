@@ -16,6 +16,7 @@ Deployed on https://labs12.herokuapp.com/
 - [Cors](https://www.npmjs.com/package/cors): `CORS is a Node.js package for providing a Connect/Express middleware that can be used to enable CORS`
 - [Helmet](https://www.npmjs.com/package/helmet): `Helmet helps you secure your Express apps by setting various HTTP headers`
 - [Dotenv](https://www.npmjs.com/package/dotenv): `Dotenv is a zero-dependency module that loads environment variables from a .env file`
+- [Jsonwebtoken] (https://www.npmjs.com/package/jsonwebtoken): `An implementation of JSON Web Tokens`
 - [Stripe] (https://stripe.com/docs/libraries#node) `Stripe allows individuals and businesses to make and receive payments over the Internet.` 
 
 #### Development
@@ -44,10 +45,12 @@ yarn server
   - [Register User](#register)
 
 # **SUMMARY TABLE OF API ENDPOINTS**
-| Table | Method | Endpoint           | Description                                                                                                                                                                                    |
-| ----- | ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| users | POST   | /register | Creates a new `user` profile using the information sent inside the `body` of the request and returns a message along with the new `user` and a JSON Web Token in the `body` of the response.   |
-| users | POST   | /api/auth/login    | Uses the credentials sent inside the `body` to authenticate the user. On successful login, returns a message with the `user` profile and a JSON Web Token token in the `body` of the response. |
+| Table | Method | Endpoint           	| Description                                                                                                                                                                                    |
+| ----- | ----- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| users | POST  | /register 		| Creates a new `user` profile using the information sent inside the `body` of the request and returns a message along with the new `user` and a JSON Web Token in the `body` of the response. If user already exists in database, a token will be sent in the body of the response to allow user access during the session.
+| users | GET	| /register		| Returns the full list of users in the database along with their attributes.
+| users | GET	| /register/:userid	| Returns the user along with its attributes of the user with matching userid.
+| users | PUT	| /register/:userid	| Will update the premium_member or numberofsavedlocations attribute or both with the information sent in the content of the `body` of the user with matching userid.
 
 
 # AUTH ROUTES
@@ -56,7 +59,7 @@ yarn server
 
 
 ### **Registers a user**
-_Method Url:_ `/api/auth/register`
+_Method Url:_ `/register`
 _HTTP method:_ **[POST]**
 
 #### Headers
@@ -65,12 +68,12 @@ _HTTP method:_ **[POST]**
 | `Content-Type` | String | Yes      | Must be application/json |
 
 #### Body
-| name       		 	         | type   | required | description        |
-| ----------------------------------| -------- | -----------------  | 
-| `userid` 	 	 	           | String | Yes      | Must be unique     |
-| `premium_member` 	 	     | Boolean| No       | defaults to false  |
-| `numberofsavedlocations` | Integer| No       | defaults to 0      |
-| `created_at` 	 		       | String | No       | automatic          |
+| name       		 	| type     | required | description        |
+| ------------------------------| -------- | -------- | ------------------ |
+| `userid` 	 	 	| String   | Yes      | Must be unique     |
+| `premium_member` 	 	| Boolean  | No       | defaults to false  |
+| `numberofsavedlocations`	| Integer  | No       | defaults to 0      |
+| `created_at` 	 	        | String   | No       | automatic          |
 
 #### Response
 ##### 201 (Created)
@@ -85,6 +88,20 @@ _example:_
     ],
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiTWlja2V5IiwidXNlcm5hbWUiOiJ0YXlsb3IiLCJpYXQiOjE1NTg0OTI4NDUsImV4cCI6MTU1ODc3MzY0NX0.tcQuxc1EzJQ_mEokJT7Tbmc9cDZXhhBdgWfX1gi7LIE"
 }
+```
+
+##### 200 (User Authorized)
+> If the user has previously registered, the endpoint will return an HTTP response with a status code `200` and a body as below.
+_example:_
+```
+
+{
+    "userid": "Kamal",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiS2FtYWwiLCJ1c2VybmFtZSI6InRheWxvciIsImlhdCI6MTU1ODYzNzc0MiwiZXhwIjoxNTU4OTE4NTQyfQ.m49KLfRPZkPD63rkZLmazZCPYFTxTM9KSNFsEx0P3Pk",
+    "message": "Welcome back."
+}
+```
+
 
 ##### 400 (Bad Request)
 
@@ -95,20 +112,7 @@ _example:_
 'Please enter a userid.'
 ```
 
-##### 401 (Unauthorized)
 
-> If you enter a username that has already been taken for registration, the endpoint will return an HTTP response with a status code `401` and a body as below.
-_example:_
-
-```
-{
-"err": {
-"errno": 19,
-"code": "SQLITE_CONSTRAINT"
-},
-"message": "This userid is not available. Please pick a different userid"
-}
-```
 
 ##### 500 (Internal Server Error)
 

@@ -7,14 +7,14 @@ const Users = require('./controller');
 const knexConfig = require("../../knexfile.js");
 
 
-const secret = process.env.SECRET || 'string';
+const secret = process.env.JWT_SECRET || 'string';
 
     
 function generateToken ( user ) {
-
+  console.log('in generate token',secret)
   const payload = {
     subject: user.userid,
-    username: "taylor"
+    // username: "taylor"
   }
   const options = {
     expiresIn: '78h'
@@ -69,12 +69,8 @@ router.post("/", (req, res) => {
         .catch(error => {
           if (error.errno === 19)
             res
-              .status(401)
-              .json({
-                err: error,
-                message:
-                  "This userid is already taken. Please pick a different userid"
-              });
+              .status(200).json({userid, token, message: `Welcome back.`})
+              .send(user.id);
           else
             res
               .status(501)
@@ -93,26 +89,57 @@ router.post("/", (req, res) => {
   }
 });
 
-// router.put("/:id", (req, res) => {
-//   db.update(req.params.id, req.body)
-//   .then(newData => {
-//   if (newData) {
-//       res.status(200).json(newData);
-//   } else {
-//       res.status(404).json({ message: "No such pin exits!" });
-//   }
-//   })
-//   .catch(error => {
-//   res.status(500).json(error);
-//   });
-// });
+router.put('/:userid', async (req, res) => {
+  try {
 
-//get by Id
+      console.log(req.params.userid, req.body)
+      let id = req.params.userid;
+      let {premium_member, numberofsavedlocations} = req.body;
+      if( premium_member != null && numberofsavedlocations != null ){
+        const count = await db('users').where({ userid : id}).update({ premium_member: premium_member, numberofsavedlocations: numberofsavedlocations });
+        if (count > 0)
+           res.status(200).send('payment status and number of pins updated');
+        else
+          res.status(400).send('Could not update payment and # of pins. Please try again later.');
+      }
+      else if( premium_member != null){
+        const count = await db('users').where({ userid : id}).update({ premium_member: premium_member });
+        if (count > 0)
+           res.status(200).send('payment status updated');
+        else
+          res.status(400).send('Could not update payment status. Please try again later.');
+      } else if( numberofsavedlocations != null){
+          const count = await db('users').where({ userid : id}).update({ numberofsavedlocations: numberofsavedlocations });
+          if (count > 0)
+             res.status(200).send('number of pins updated');
+          else
+            res.status(400).send('Could not update number of pins . Please try again later.');
+      } else 
+          res.status(401).send('Please provide either payment status or number of pins to update.');
+      
+      console.log( 'count is ', count)
+   
+  } catch (err) {
+      res.status(500).send(err);
+  }
+
+})
+
+
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-    const user = await Users.findUserById(id);
+
+   
+    const user = await  db('users')
+       .select('id',
+            'userid',
+            'premium_member',
+            'numberofsavedlocations')
+        .where({ userid: id })
+        .first();
 
     if (!user) {
       res
@@ -122,7 +149,8 @@ router.get('/:id', async (req, res) => {
       res.status(200).json(user);
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ err: error, id: id, user: user, message: 'Internal server error' });
+    
   }
 });
 

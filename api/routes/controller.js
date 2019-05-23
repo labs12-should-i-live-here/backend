@@ -56,12 +56,10 @@ function findUserById(id) {
 async function addPin(data) {
     const newData = {
         ...data, 
-        price: Number(data.price)
     };
 
     const id = await db("pins")
-        .insert(newData)
-        .returning('id');
+        .insert(data);
 
     const newPin = await getPinById(id);
     return newPin;
